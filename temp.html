@@ -1,0 +1,184 @@
+<html>
+<head>
+<style>
+body {
+	margin-top:50px;
+}
+button {
+	border:1px solid black;
+	border-radius:10px;
+	background-color:black;
+	color:white;
+	cursor:pointer;
+}
+input {
+	width=100%;
+	border:1px solid black;
+	border-radius:10px;
+}
+select {
+	border:1px solid black;
+	border-radius:10px;
+}
+</style>
+</head>
+<body>
+<center>
+<h1>TEMPERATURE CONVERTER</h1>
+<table align="center" cellspacing=10 cellpadding=5>
+<tr>
+<td><select name="Centigrade"  id="Unit1">
+<option value="Centigrade" id="C1">Centigrade</option>
+<option value="Fahrenheit" id="F1">Fahrenheit</option>
+<option value="Kelvin" id="K1">Kelvin</option></select></td>
+<td><input type="number" id="T1"></td>
+</tr>
+<tr>
+<td><select name="Fahrenheight"  id="Unit2">
+<option value="Fahrenheit" id="F2">Fahrenheit</option>
+<option value="Centigrade" id="C2">Centigrade</option>
+<option value="Kelvin" id="K2">Kelvin</option></select></td>
+<td><input type="number" id="result"></td>
+</tr>
+<tr><td><button onclick="convert()">Convert</button></td><td><button id="reset" onclick="clearVal()">Reset</button></td></tr>
+</table>
+<script>
+function convert()
+{
+	var firstInput=document.getElementById("T1");
+	var firstUnit=document.getElementById("Unit1").value;
+	var secondUnit=document.getElementById("Unit2").value;
+	var result=document.getElementById("result");
+	if(firstInput.value!="")
+	{
+	var convertedTemperature;
+	if(firstUnit==="Centigrade")
+	{
+		var temperature=parseFloat(firstInput.value);
+		if(secondUnit==="Fahrenheit")
+		{
+			var convertedTemperature=(temperature*(9/5)+32);
+			result.value=convertedTemperature.toFixed(2);
+		}
+		else if(secondUnit==="Centigrade")
+		{
+			var convertedTemperature=temperature;
+			result.value=convertedTemperature.toFixed(2);
+		}
+		else if(secondUnit==="Kelvin")
+		{
+			var convertedTemperature=(temperature+273.15);
+			result.value=convertedTemperature.toFixed(2);
+		}
+	}
+	else if(firstUnit==="Fahrenheit")
+	{
+		var temperature=parseFloat(firstInput.value);
+		if(secondUnit==="Fahrenheit")
+		{
+			var convertedTemperature=temperature;
+			result.value=convertedTemperature.toFixed(2);
+		}
+		else if(secondUnit==="Centigrade")
+		{
+			var convertedTemperature=(temperature-32)*(5/9);
+			result.value=convertedTemperature.toFixed(2);
+		}
+		else if(secondUnit==="Kelvin")
+		{
+			var convertedTemperature=((temperature-32)/1.8)+273.15;
+			result.value=convertedTemperature.toFixed(2);
+		}
+	}
+	else if(firstUnit==="Kelvin")
+	{
+		var temperature=parseFloat(firstInput.value);
+		if(secondUnit==="Fahrenheit")
+		{
+			var convertedTemperature=(1.8*(temperature-273))+32;
+			result.value=convertedTemperature.toFixed(2);
+		}
+		else if(secondUnit==="Centigrade")
+		{
+			var convertedTemperature=(temperature-273.15);
+			result.value=convertedTemperature.toFixed(2);
+		}
+		else if(secondUnit==="Kelvin")
+		{
+			var convertedTemperature=temperature;
+			result.value=convertedTemperature.toFixed(2);
+		}
+	}
+	}
+	if(result.value!="")
+	{
+	if(secondUnit==="Centigrade")
+	{
+		var temperature=parseFloat(result.value);
+		if(firstUnit==="Fahrenheit")
+		{
+			var convertedTemperature=(temperature*(9/5)+32);
+			firstInput.value=convertedTemperature.toFixed(2);
+		}
+		else if(firstUnit==="Centigrade")
+		{
+			var convertedTemperature=temperature;
+			firstInput.value=convertedTemperature.toFixed(2);
+		}
+		else if(firstUnit==="Kelvin")
+		{
+			var convertedTemperature=(temperature+273.15);
+			firstInput.value=convertedTemperature.toFixed(2);
+		}
+	}
+	else if(secondUnit==="Fahrenheit")
+	{
+		var temperature=parseFloat(result.value);
+		if(firstUnit==="Fahrenheit")
+		{
+			var convertedTemperature=temperature;
+			firstInput.value=convertedTemperature.toFixed(2);
+		}
+		else if(firstUnit==="Centigrade")
+		{
+			var convertedTemperature=(temperature-32)*(5/9);
+			firstInput.value=convertedTemperature.toFixed(2);
+		}
+		else if(firstUnit==="Kelvin")
+		{
+			var convertedTemperature=((temperature-32)/1.8)+273.15;
+			firstInput.value=convertedTemperature.toFixed(2);
+		}
+	}
+	else if(secondUnit==="Kelvin")
+	{
+		var temperature=parseFloat(result.value);
+		if(firstUnit==="Fahrenheit")
+		{
+			var convertedTemperature=(1.8*(temperature-273))+32;
+			firstInput.value=convertedTemperature.toFixed(2);
+		}
+		else if(firstUnit==="Centigrade")
+		{
+			var convertedTemperature=(temperature-273.15);
+			firstInput.value=convertedTemperature.toFixed(2);
+		}
+		else if(firstUnit==="Kelvin")
+		{
+			var convertedTemperature=temperature;
+			firstInput.value=convertedTemperature.toFixed(2);
+		}
+	}
+	}
+}
+function clearVal()
+{
+	document.getElementById("Unit1").value="Centigrade";
+	document.getElementById("T1").value="";
+	document.getElementById("Unit2").value="Fahrenheit";
+	document.getElementById("result").value="";
+}
+</script>
+</center>
+</body>
+</html>
